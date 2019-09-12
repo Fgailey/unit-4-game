@@ -1,19 +1,19 @@
-.fighters{
+.fighters, .chosenFighter, .enemyFighter, .defendingEnemy{
     height: 150px;
     width: 150px;
 }
 
+.fighters {
+    border: 2px solid black;
+}
 .chosenFighter {
-    height: 150px;
-    width: 150px;
+    border: 5px solid gold;
 }
 
 .enemyFighter {
-    height: 150px;
-    width: 150px;
+    border: 2px solid black;
 }
 
 .defendingEnemy {
-    height: 150px;
-    width: 150px;
+    border: 5px solid red;
 }

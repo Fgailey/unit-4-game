@@ -17,16 +17,16 @@
         <div class="row">
             
                     <div id="aragorn">
-                        <img src="./assets/images/Aragorn.jpg" class="fighters" value="100"alt="aragorn">
+                        <img src="./assets/images/Aragorn.jpg" class="fighters" data-health="100" data-attack="8" alt="aragorn">
                     </div>
                     <div id="legolas">
-                        <img src="./assets/images/Legolas.jpg" class="fighters" value="80" alt="Legolas">
+                        <img src="./assets/images/Legolas.jpg" class="fighters" data-health="80" data-attack="10" alt="Legolas">
                     </div>
                     <div id="gimli">
-                        <img src="./assets/images/Gimli.jpg" class="fighters" value="120" alt="Gimli">
+                        <img src="./assets/images/Gimli.jpg" class="fighters" data-health="120" data-attack="6" alt="Gimli">
                     </div>
                     <div id="gandalf">
-                        <img src="./assets/images/Gandalf.jpg" class="fighters" value="110" alt="Gandalf">
+                        <img src="./assets/images/Gandalf.jpg" class="fighters" data-health="110" data-attack="7" alt="Gandalf">
                     </div>
             
             <div class="col">
@@ -37,21 +37,22 @@
             <div class="yourChar">Your Character</div>
             
         </div>
-        <div id="fighting" class="row">
-
-            </div>
+        <div id="fighting" class="row"></div>
         <div class="row">
             Enemies Available to Attack
         </div>
-        <div class="enemies row"></div>
-        <div class="row">
-            
-            <button>attack</button>
+        <div class="enemies row">
+            <img src='./assets/images/Lurtz.jpg' class='enemyFighter' value='70' alt='Lurtz'></img>
+            <img src='./assets/images/Balrog.jpg' class='enemyFighter' value='100' alt='Balrog'></img>
+            <img src='./assets/images/Witch_King.png' class='enemyFighter' value='90' alt='Witch_King'></img>
+            <img src='./assets/images/Shelob.jpg' class='enemyFighter' value='80' alt='Shelob'></img>
         </div>
         <div class="row">
-            <div id="defender">
-                Defender
-            </div>
+            
+            <button id="attack">Attack!</button>
+        </div>
+        <div class="row">
+            <div id="defender"></div>
         </div>
         <div class="row">
             <button id="reset">Reset</button>
