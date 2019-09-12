@@ -1,0 +1,19 @@
+.fighters{
+    height: 150px;
+    width: 150px;
+}
+
+.chosenFighter {
+    height: 150px;
+    width: 150px;
+}
+
+.enemyFighter {
+    height: 150px;
+    width: 150px;
+}
+
+.defendingEnemy {
+    height: 150px;
+    width: 150px;
+}

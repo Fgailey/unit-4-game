@@ -7,7 +7,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="./assets/javascript/game.js"></script>
@@ -15,29 +15,46 @@
 <body>
     <div class="container">
         <div class="row">
+            
+                    <div id="aragorn">
+                        <img src="./assets/images/Aragorn.jpg" class="fighters" value="100"alt="aragorn">
+                    </div>
+                    <div id="legolas">
+                        <img src="./assets/images/Legolas.jpg" class="fighters" value="80" alt="Legolas">
+                    </div>
+                    <div id="gimli">
+                        <img src="./assets/images/Gimli.jpg" class="fighters" value="120" alt="Gimli">
+                    </div>
+                    <div id="gandalf">
+                        <img src="./assets/images/Gandalf.jpg" class="fighters" value="110" alt="Gandalf">
+                    </div>
+            
             <div class="col">
-
-            </div>
-            <div class="col">
-                Star Wars RPG!
+                Lord of the Rings RPG!
             </div>
         </div>
         <div class="row">
             <div class="yourChar">Your Character</div>
+            
         </div>
-        <div class="row">
-            <div class="enemies">
-                Enemies Available to Attack
+        <div id="fighting" class="row">
+
             </div>
-        </div>
         <div class="row">
-            <div class="fighting">Fight Section</div>
+            Enemies Available to Attack
+        </div>
+        <div class="enemies row"></div>
+        <div class="row">
+            
             <button>attack</button>
         </div>
         <div class="row">
-            <div class="defender">
+            <div id="defender">
                 Defender
             </div>
+        </div>
+        <div class="row">
+            <button id="reset">Reset</button>
         </div>
     </div>
 </body>
