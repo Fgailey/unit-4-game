@@ -4,10 +4,12 @@
 var fighterSelected = {
     charHealth: Number,
     charAttack: Number,
+    charName: "",
 };
 var defenderSelection = {
     defHealth: Number,
     defAttack: Number,
+    defName: "",
 };
 
 
@@ -41,12 +43,12 @@ $(document).ready(function() {
             fighter.attr("src", $(this).attr('src'));
             fighter.attr("value", $(this).attr('value'))
             $("#character").append(fighter);
-            $(this).fadeOut();
+            $(this).parent().fadeOut();
 
             // adds name to the chosen fighter
             var fighterName = $("<div>");
             fighterName.addClass("charName");
-            fighterName.text($(this).attr("alt"));
+            fighterName.text($(this).attr("data-name"));
             $("#character").append(fighterName);
 
             //adds the attack attribute to the chosen fighter
@@ -64,9 +66,12 @@ $(document).ready(function() {
             //need to make an object for the character chosen
             fighterSelected.charHealth = $(this).attr("data-health");
             fighterSelected.charAttack = $(this).attr("data-attack");
+            fighterSelected.charName = $(this).attr("data-name")
             
             console.log(fighterSelected.charHealth);
             console.log(fighterSelected.charAttack);
+            console.log(fighterSelected.charName);
+
             
             //makes it so new fighter cant be picked until game over or reset
             fighterPicked = true;
@@ -86,10 +91,7 @@ $(document).ready(function() {
             defender.attr("value", $(this).attr('value'));
             $("#defender").append(defender);
             $(this).fadeOut();
-            // var charAlt = $(this).attr('alt');
-            // if (charAlt === $("div").attr('id')){
-            //     $("#")
-            // }
+            
             defenderPicked = true;
         }
     });
@@ -99,7 +101,7 @@ $(document).ready(function() {
         console.log("reset");
         $("#fighting").empty();
         $("#defender").empty();
-        $(".fighters").fadeIn();
+        $(".character").fadeIn();
         $(".enemyFighter").fadeIn();
 
         defenderPicked = false;
