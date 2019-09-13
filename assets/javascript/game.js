@@ -13,7 +13,6 @@ var defenderSelected = {
     charName: "",
 };
 
-
 var fighterPicked = false;
 var defenderPicked = false;
 
@@ -35,6 +34,13 @@ function defenderDefeat(){
     $(".defendingEnemy").parent().fadeOut();
 }
 
+
+function fighterDefeat(){
+    $("#fighting").animate({backgroundColor: "red"});
+    
+    
+}
+
 $(document).ready(function() {
 
     //loads the attack value of each hero
@@ -42,8 +48,6 @@ $(document).ready(function() {
     $("#heroAttack2").html($("#legolas").children().attr("data-attack"));
     $("#heroAttack3").html($("#gimli").children().attr("data-attack"));
     $("#heroAttack4").html($("#gandalf").children().attr("data-attack"));
-
-
 
 
     $("#attack").on("click", function(){
@@ -65,13 +69,7 @@ $(document).ready(function() {
             if(defenderSelected.charHealth <= 0){
                 defenderDefeat();
             }
-        }
-        if (defenderSelected.charHealth <= 0){
-            
-            
-        }
-        
-        
+        }        
     });
 
     
@@ -155,11 +153,11 @@ $(document).ready(function() {
             defenderHealth.attr("id", "defHealth");
             $("#enemy").append(defenderHealth);
 
-            // var defenderAttack = $("<div>");
-            // defenderAttack.addClass("charAttack");
-            // defenderAttack.text($(this).attr("data-attack"));
-            // defenderAttack.attr("id", "defAttack");
-            // $("#enemy").append(defenderAttack);
+            var defenderAttack = $("<div>");
+            defenderAttack.addClass("charAttack");
+            defenderAttack.text($(this).attr("data-attack"));
+            defenderAttack.attr("id", "defAttack");
+            $("#enemy").append(defenderAttack);
 
             var defenderName = $("<div>");
             defenderName.addClass("charName");
