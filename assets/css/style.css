@@ -31,6 +31,11 @@
     position: relative;
     border: 2px solid black;
 }
+
+.character {
+    position: relative;
+    border: 2px solid black;
+}
 .charName {
     position: absolute;
     bottom: 0px;
@@ -61,4 +66,5 @@ body {
   }
   h1 {
     font-family: 'fanjofey_leoda_ahregular';
+    color: gold;
   }
