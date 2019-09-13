@@ -26,7 +26,11 @@ var defenderPicked = false;
 //defender fades out and allows for a new defender to be selected
 //the stats should auto reset because of the defender on click function
 function defenderDefeat(){
-
+    defenderPicked = false;
+    defenderSelected.charHealth = 1;
+    console.log("defeated");
+    debugger;
+    $(".defendingEnemy").parent().fadeOut();
 }
 
 $(document).ready(function() {
@@ -42,10 +46,19 @@ $(document).ready(function() {
 
             $("#charAttack").html(fighterSelected.charAttack);
             $("#charHealth").html(fighterSelected.charHealth);
-            console.log(fighterSelected.charAttack);
-        
+            
+              
+            $("#defHealth").html(defenderSelected.charHealth) 
+
+            if(defenderSelected.charHealth <= 0){
+                defenderDefeat();
+            }
+        }
+        if (defenderSelected.charHealth <= 0){
+            
             
         }
+        
         
     });
 
@@ -94,12 +107,7 @@ $(document).ready(function() {
             fighterSelected.charHealth = parseInt($(this).attr("data-health"));
             fighterSelected.charAttack = parseInt($(this).attr("data-attack"));
             fighterSelected.charName = $(this).attr("data-name")
-            
-            console.log(fighterSelected.charHealth);
-            console.log(fighterSelected.charAttack);
-            console.log(fighterSelected.charName);
-
-            
+                        
             //makes it so new fighter cant be picked until game over or reset
             fighterPicked = true;
         }
@@ -112,18 +120,44 @@ $(document).ready(function() {
         //give a red glowing background in the class
         if (defenderPicked === false) {
             
+            //creates container
+            var defenderPort = $("<div>");
+            defenderPort.addClass("enemy");
+            defenderPort.attr("id", "enemy")
+            $("#defender").append(defenderPort);
+
+            //creates and attaches image
             var defender = $("<img>");
             defender.addClass("defendingEnemy");
             defender.attr("src", $(this).attr('src'));
             defender.attr("value", $(this).attr('value'));
-            $("#defender").append(defender);
-            $(this).fadeOut();
+            $("#enemy").append(defender);
+            $(this).parent().fadeOut();
             
+            //creates and attaches health div
+            var defenderHealth = $("<div>");
+            defenderHealth.addClass("charHealth");
+            defenderHealth.text($(this).attr("data-health"));
+            defenderHealth.attr("id", "defHealth");
+            $("#enemy").append(defenderHealth);
+
+            // var defenderAttack = $("<div>");
+            // defenderAttack.addClass("charAttack");
+            // defenderAttack.text($(this).attr("data-attack"));
+            // defenderAttack.attr("id", "defAttack");
+            // $("#enemy").append(defenderAttack);
+
+            var defenderName = $("<div>");
+            defenderName.addClass("charName");
+            defenderName.text($(this).attr("data-name"));
+            defenderName.attr("id", "defName");
+            $("#enemy").append(defenderName);
+
             //assigns stats to the object
             defenderSelected.charHealth = parseInt($(this).attr("data-health"));
             defenderSelected.charAttack = parseInt($(this).attr("data-attack"));
             defenderSelected.charName = $(this).attr("data-name");
-            console.log(defenderSelected.charName);
+            
 
             defenderPicked = true;
         }
@@ -135,7 +169,7 @@ $(document).ready(function() {
         $("#fighting").empty();
         $("#defender").empty();
         $(".character").fadeIn();
-        $(".enemyFighter").fadeIn();
+        $(".enemy").fadeIn();
 
         defenderPicked = false;
         fighterPicked = false;

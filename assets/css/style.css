@@ -36,6 +36,8 @@
     position: relative;
     border: 2px solid black;
 }
+
+/* Text values */
 .charName {
     position: absolute;
     bottom: 0px;
@@ -59,11 +61,14 @@
     padding-right: 3px;
 }
 
+/* background */
 body {
     background-image: url("../images/lotrbackground.jpg");
     background-size: 100%;
      
   }
+
+  /* page header */
   h1 {
     font-family: 'fanjofey_leoda_ahregular';
     color: gold;
