@@ -28,7 +28,30 @@
 }
 
 .character {
+    position: relative;
     border: 2px solid black;
+}
+.charName {
+    position: absolute;
+    bottom: 0px;
+    background-color:white;
+}
+
+.charAttack {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background-color:white;
+    padding-left: 3px;
+
+}
+
+.charHealth {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color:white;
+    padding-right: 3px;
 }
 
 body {

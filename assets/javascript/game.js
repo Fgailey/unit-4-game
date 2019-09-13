@@ -29,12 +29,37 @@ $(document).ready(function() {
     //this creates a copy of the fighter in the fighting section with the value(hp) and fighting class.
     $(".fighters").on("click", function() {
         if (fighterPicked === false){
+            //creates profile for fighter
+            var fighterPort = $("<div>");
+            fighterPort.addClass("character");
+            fighterPort.attr("id", "character")
+            $("#fighting").append(fighterPort);
+            
+            //adds img to chosen fighter
             var fighter = $("<img>");
             fighter.addClass("chosenFighter");
             fighter.attr("src", $(this).attr('src'));
             fighter.attr("value", $(this).attr('value'))
-            $("#fighting").append(fighter);
+            $("#character").append(fighter);
             $(this).fadeOut();
+
+            // adds name to the chosen fighter
+            var fighterName = $("<div>");
+            fighterName.addClass("charName");
+            fighterName.text($(this).attr("alt"));
+            $("#character").append(fighterName);
+
+            //adds the attack attribute to the chosen fighter
+            var fighterAttack = $("<div>");
+            fighterAttack.addClass("charAttack");
+            fighterAttack.text($(this).attr("data-attack"));
+            $("#character").append(fighterAttack);
+
+            //adds the health attribute
+            var fighterHealth = $("<div>");
+            fighterHealth.addClass("charHealth");
+            fighterHealth.text($(this).attr("data-health"));
+            $("#character").append(fighterHealth);
 
             //need to make an object for the character chosen
             fighterSelected.charHealth = $(this).attr("data-health");
