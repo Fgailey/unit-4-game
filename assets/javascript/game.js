@@ -4,6 +4,7 @@
 var fighterSelected = {
     charHealth: Number,
     charAttack: Number,
+    charCounter: Number, 
     charName: "",
 };
 var defenderSelected = {
@@ -29,22 +30,33 @@ function defenderDefeat(){
     defenderPicked = false;
     defenderSelected.charHealth = 1;
     console.log("defeated");
+    $("#defender").empty();
     debugger;
     $(".defendingEnemy").parent().fadeOut();
 }
 
 $(document).ready(function() {
 
+    //loads the attack value of each hero
+    $("#heroAttack1").html($("#aragorn").children().attr("data-attack"));
+    $("#heroAttack2").html($("#legolas").children().attr("data-attack"));
+    $("#heroAttack3").html($("#gimli").children().attr("data-attack"));
+    $("#heroAttack4").html($("#gandalf").children().attr("data-attack"));
+
+
+
+
     $("#attack").on("click", function(){
         if(defenderSelected.charHealth > 0){
             //damage to defender
-            defenderSelected.charHealth -= fighterSelected.charAttack;
-            //doubles fighters damage
-            fighterSelected.charAttack += fighterSelected.charAttack;
+            defenderSelected.charHealth -= fighterSelected.charCounter;
             //defender counter attacks
             fighterSelected.charHealth -= defenderSelected.charAttack;
 
-            $("#charAttack").html(fighterSelected.charAttack);
+            //doubles fighters damage
+            fighterSelected.charCounter = fighterSelected.charCounter + fighterSelected.charAttack;
+
+            $("#charAttack").html(fighterSelected.charCounter);
             $("#charHealth").html(fighterSelected.charHealth);
             
               
@@ -96,18 +108,20 @@ $(document).ready(function() {
             fighterAttack.attr("id", "charAttack");
             $("#character").append(fighterAttack);
 
+            
             //adds the health attribute
             var fighterHealth = $("<div>");
             fighterHealth.addClass("charHealth");
             fighterHealth.text($(this).attr("data-health"));
             fighterHealth.attr("id", "charHealth");
             $("#character").append(fighterHealth);
-
+            
             //need to make an object for the character chosen
             fighterSelected.charHealth = parseInt($(this).attr("data-health"));
             fighterSelected.charAttack = parseInt($(this).attr("data-attack"));
             fighterSelected.charName = $(this).attr("data-name")
-                        
+            fighterSelected.charCounter = fighterSelected.charAttack
+            
             //makes it so new fighter cant be picked until game over or reset
             fighterPicked = true;
         }
