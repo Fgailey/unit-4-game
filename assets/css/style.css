@@ -1,13 +1,22 @@
 .fighters, .chosenFighter, .enemyFighter, .defendingEnemy{
-    height: 150px;
-    width: 150px;
+    height: 120px;
+    width: 120px;
 }
 
 .fighters {
     border: 2px solid black;
+    
+    /* display: block;
+    margin-left: auto;
+    margin-right: auto; */
+      
 }
 .chosenFighter {
     border: 5px solid gold;
+    /* centers the picture */
+    /* display: block;
+    margin-left: auto;
+    margin-right: auto; */
 }
 
 .enemyFighter {
@@ -17,3 +26,16 @@
 .defendingEnemy {
     border: 5px solid red;
 }
+
+.character {
+    border: 2px solid black;
+}
+
+body {
+    background-image: url("../images/lotrbackground.jpg");
+    background-size: 100%;
+     
+  }
+  h1 {
+    font-family: 'fanjofey_leoda_ahregular';
+  }

@@ -61,6 +61,10 @@ $(document).ready(function() {
             defender.attr("value", $(this).attr('value'));
             $("#defender").append(defender);
             $(this).fadeOut();
+            // var charAlt = $(this).attr('alt');
+            // if (charAlt === $("div").attr('id')){
+            //     $("#")
+            // }
             defenderPicked = true;
         }
     });
