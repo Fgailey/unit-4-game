@@ -15,7 +15,13 @@
 </head>
 <body>
     <div class="container">
-        <div class="row">
+            <div class="col">
+                    <div class="row justify-content-center">
+                        <h1>Lord of the Rings RPG!</h1>
+                    </div>
+                    <div id="winLoss" class="row justify-content-center mt-5"></div>
+                </div>
+        <div class="row justify-content-center">
             
                     <div id="aragorn" class="character">
                         <img src="./assets/images/Aragorn.jpg" class="fighters" data-health="100" data-attack="8" data-name="aragorn">
@@ -38,23 +44,20 @@
                         <div id="heroAttack4"class=" charAttack text-center"></div>
                     </div>
             
-            <div class="col">
-                <h1>Lord of the Rings RPG!</h1>
-            </div>
         </div>
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="yourChar">
                 <h3 class="text-white">Your Character</h3>
             </div>
             
         </div>
         <!-- Chosen fighter is placed here -->
-        <div id="fighting" class="row"></div>
+        <div id="fighting" class="row justify-content-center"></div>
 
-        <div class="row text-white">
+        <div class="row text-white justify-content-center">
             Enemies Available to Attack
         </div>
-        <div class="enemies row">
+        <div class="enemies row justify-content-center">
 
             <div class="enemy">
                 <img src='./assets/images/Lurtz.jpg' class='enemyFighter' data-health='80' data-attack='8' data-name='Lurtz'></img>
@@ -78,11 +81,11 @@
             </div>
 
         </div>
-        <div class="row">
+        <div class="row justify-content-center my-2">
             
             <button id="attack">Attack!</button>
         </div>
-        <div class="row">
+        <div class="row justify-content-center">
             <div id="defender"></div>
         </div>
         <div class="row">

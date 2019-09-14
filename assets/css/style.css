@@ -76,6 +76,14 @@ body {
     color: gold;
   }
 
+  .yourChar{
+      font-family: 'fanjofey_leoda_ahregular';
+  }
+
+  #winLoss {
+      margin: auto;
+  }
+
   #reset {
       position: absolute;
       bottom: 10px;

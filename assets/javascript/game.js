@@ -16,6 +16,10 @@ var defenderSelected = {
 var fighterPicked = false;
 var defenderPicked = false;
 
+var battle = true;
+
+var fights = 0;
+
 // var enemyStats = [80, 90, 70, 100]
 //this will start once the character has been chosen and display the enemy's
 //this doesnt work cause I cant click on one of these
@@ -31,11 +35,20 @@ function defenderDefeat(){
     console.log("defeated");
     $("#defender").empty();
     $(".defendingEnemy").parent().fadeOut();
+    battle = false;
+    fights++;
+    if (fights === 4){
+        victory();
+    }
 }
 
+function victory(){
+    $("#winLoss").html("<h1>VICTORY</h1>")
+}
 
 function fighterDefeat(){
-    $(".chosenFighter").parent().fadeTo("slow", 0.15);  
+    $(".chosenFighter").parent().fadeTo("slow", 0.15);
+    battle = false;  
 }
 
 
@@ -51,32 +64,31 @@ $(document).ready(function() {
 
 
     $("#attack").on("click", function(){
-        if(defenderSelected.charHealth > 0){
-            //damage to defender
-            defenderSelected.charHealth -= fighterSelected.charCounter;
-            //defender counter attacks
-            fighterSelected.charHealth -= defenderSelected.charAttack;
+        if(battle){
+            if(defenderSelected.charHealth > 0){
+                //damage to defender
+                defenderSelected.charHealth -= fighterSelected.charCounter;
+                //defender counter attacks
+                fighterSelected.charHealth -= defenderSelected.charAttack;
 
-            //doubles fighters damage
-            fighterSelected.charCounter = fighterSelected.charCounter + fighterSelected.charAttack;
+                //doubles fighters damage
+                fighterSelected.charCounter = fighterSelected.charCounter + fighterSelected.charAttack;
 
-            $("#charAttack").html(fighterSelected.charCounter);
-            $("#charHealth").html(fighterSelected.charHealth);
-            
-              
-            $("#defHealth").html(defenderSelected.charHealth) 
+                $("#charAttack").html(fighterSelected.charCounter);
+                $("#charHealth").html(fighterSelected.charHealth);
+                
+                
+                $("#defHealth").html(defenderSelected.charHealth) 
 
-            if(defenderSelected.charHealth <= 0 && fighterSelected.charHealth > 0){
-                defenderDefeat();
-            }
-            else if(defenderSelected.charHealth > 0 && fighterSelected.charHealth <= 0){
-                fighterDefeat();
-            }
-            else if(defenderSelected.charHealth <= 0 && fighterSelected.charHealth <= 0){
-                fighterDefeat();
-                defenderDefeat();
-            }
-        }        
+                if(defenderSelected.charHealth <= 0){
+                    defenderDefeat();
+                }
+                
+                if(fighterSelected.charHealth <= 0){
+                    fighterDefeat();
+                }
+            }  
+        }      
     });
 
     
@@ -177,8 +189,11 @@ $(document).ready(function() {
             defenderSelected.charAttack = parseInt($(this).attr("data-attack"));
             defenderSelected.charName = $(this).attr("data-name");
             
-
+            //stops the defender from being picked until defeated
             defenderPicked = true;
+
+            //lets the attack button work again
+            battle = true;
         }
     });
 
@@ -189,9 +204,11 @@ $(document).ready(function() {
         $("#defender").empty();
         $(".character").fadeIn();
         $(".enemy").fadeIn();
-
+        $("#winLoss").empty();
         defenderPicked = false;
         fighterPicked = false;
+
+        battle = true;
     });
     
 });
