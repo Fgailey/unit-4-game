@@ -30,16 +30,14 @@ function defenderDefeat(){
     defenderSelected.charHealth = 1;
     console.log("defeated");
     $("#defender").empty();
-    debugger;
     $(".defendingEnemy").parent().fadeOut();
 }
 
 
 function fighterDefeat(){
-    $("#fighting").animate({backgroundColor: "red"});
-    
-    
+    $(".chosenFighter").parent().fadeTo("slow", 0.15);  
 }
+
 
 $(document).ready(function() {
 
@@ -48,6 +46,8 @@ $(document).ready(function() {
     $("#heroAttack2").html($("#legolas").children().attr("data-attack"));
     $("#heroAttack3").html($("#gimli").children().attr("data-attack"));
     $("#heroAttack4").html($("#gandalf").children().attr("data-attack"));
+
+    //
 
 
     $("#attack").on("click", function(){
@@ -66,7 +66,14 @@ $(document).ready(function() {
               
             $("#defHealth").html(defenderSelected.charHealth) 
 
-            if(defenderSelected.charHealth <= 0){
+            if(defenderSelected.charHealth <= 0 && fighterSelected.charHealth > 0){
+                defenderDefeat();
+            }
+            else if(defenderSelected.charHealth > 0 && fighterSelected.charHealth <= 0){
+                fighterDefeat();
+            }
+            else if(defenderSelected.charHealth <= 0 && fighterSelected.charHealth <= 0){
+                fighterDefeat();
                 defenderDefeat();
             }
         }        
