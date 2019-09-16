@@ -16,7 +16,7 @@ var defenderSelected = {
 var fighterPicked = false;
 var defenderPicked = false;
 
-var battle = true;
+var battle = false;
 
 var fights = 0;
 
@@ -183,6 +183,9 @@ $(document).ready(function() {
             fighterSelected.charAttack = parseInt($(this).attr("data-attack"));
             fighterSelected.charName = $(this).attr("data-name")
             fighterSelected.charCounter = fighterSelected.charAttack
+            
+            //display fighters health
+            $("#charHealth").html(fighterSelected.charHealth);
             
             //makes it so new fighter cant be picked until game over or reset
             fighterPicked = true;
