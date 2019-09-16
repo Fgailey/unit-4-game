@@ -20,15 +20,26 @@ var battle = true;
 
 var fights = 0;
 
-// var enemyStats = [80, 90, 70, 100]
-//this will start once the character has been chosen and display the enemy's
-//this doesnt work cause I cant click on one of these
+var music = true;
+var minas = new Audio("./assets/sounds/minasMorgul.mp3");
+var gate = new Audio("./assets/sounds/blackGate.mp3");
+
+var aragonSound = new Audio("./assets/sounds/aragorn.mp3");
+var legolasSound = new Audio("./assets/sounds/legolas.mp3");
+var gimliSound = new Audio("./assets/sounds/gimli.mp3");
+var gandolfSound = new Audio("./assets/sounds/gandalf.mp3");
+
+var pass = new Audio("./assets/sounds/shallnotpass.mp3");
 
 
+//-----------FUNCTIONS-------------------------------------
 
-//when the defenders health drops below 0 
-//defender fades out and allows for a new defender to be selected
-//the stats should auto reset because of the defender on click function
+function enemyAppear(){
+    $(".enemy").fadeIn();
+    
+}
+
+//runs everytime defender health drops to or below 0
 function defenderDefeat(){
     defenderPicked = false;
     defenderSelected.charHealth = 1;
@@ -37,30 +48,61 @@ function defenderDefeat(){
     $(".defendingEnemy").parent().fadeOut();
     battle = false;
     fights++;
+    //triggers victory after 4th fight
     if (fights === 4){
         victory();
     }
 }
 
+//if all the enemy's are defeated
 function victory(){
     $("#winLoss").html("<h1>VICTORY</h1>")
 }
 
+
+//if the chosen fighter is defeated
 function fighterDefeat(){
     $(".chosenFighter").parent().fadeTo("slow", 0.15);
+    minas.play();
+
     battle = false;  
 }
 
 
-$(document).ready(function() {
+//function to make sure right character sound gets called
+function characterSound(){
+    if(fighterSelected.charName === "Gandalf"){
+        gandolfSound.play();
+    }
+    if(fighterSelected.charName === "Gimli"){
+        gimliSound.play();
+    }
+    if(fighterSelected.charName === "Legolas"){
+        legolasSound.play();
+    }
+    if(fighterSelected.charName === "Aragorn"){
+        aragonSound.play();
+    }
+}
 
+//if gandalf and balrog are selected
+function shallNot(){
+    if(fighterSelected.charName === "Gandalf"){
+        if(defenderSelected.charName === "Balrog"){
+            pass.play();
+        }
+    }
+}
+
+//-----------------------------EXECTIONS---------------------
+$(document).ready(function() {
+    
     //loads the attack value of each hero
     $("#heroAttack1").html($("#aragorn").children().attr("data-attack"));
     $("#heroAttack2").html($("#legolas").children().attr("data-attack"));
     $("#heroAttack3").html($("#gimli").children().attr("data-attack"));
     $("#heroAttack4").html($("#gandalf").children().attr("data-attack"));
 
-    //
 
 
     $("#attack").on("click", function(){
@@ -70,27 +112,33 @@ $(document).ready(function() {
                 defenderSelected.charHealth -= fighterSelected.charCounter;
                 //defender counter attacks
                 fighterSelected.charHealth -= defenderSelected.charAttack;
-
+                
                 //doubles fighters damage
                 fighterSelected.charCounter = fighterSelected.charCounter + fighterSelected.charAttack;
-
+                
                 $("#charAttack").html(fighterSelected.charCounter);
                 $("#charHealth").html(fighterSelected.charHealth);
                 
                 
                 $("#defHealth").html(defenderSelected.charHealth) 
-
+                
                 if(defenderSelected.charHealth <= 0){
                     defenderDefeat();
+                    
+                    
                 }
                 
                 if(fighterSelected.charHealth <= 0){
                     fighterDefeat();
                 }
+                if(music){
+                    music = false;
+                    gate.play();
+                }
             }  
         }      
     });
-
+    
     
 
     //this creates a copy of the fighter in the fighting section with the value(hp) and fighting class.
@@ -120,7 +168,7 @@ $(document).ready(function() {
 
             //adds the attack attribute to the chosen fighter
             var fighterAttack = $("<div>");
-            fighterAttack.addClass("charAttack");
+            fighterAttack.addClass("charAttack text-center");
             fighterAttack.text($(this).attr("data-attack"));
             fighterAttack.attr("id", "charAttack");
             $("#character").append(fighterAttack);
@@ -129,7 +177,7 @@ $(document).ready(function() {
             //adds the health attribute
             var fighterHealth = $("<div>");
             fighterHealth.addClass("charHealth");
-            fighterHealth.text($(this).attr("data-health"));
+            fighterHealth.text($(this).attr("data-health text-center"));
             fighterHealth.attr("id", "charHealth");
             $("#character").append(fighterHealth);
             
@@ -141,6 +189,12 @@ $(document).ready(function() {
             
             //makes it so new fighter cant be picked until game over or reset
             fighterPicked = true;
+
+            //character makes sound
+            characterSound();
+
+            //calling this makes the enemy's appear after 3 seconds
+            setTimeout(enemyAppear, 3000);
         }
         //this will call on the enemy creation
         
@@ -194,26 +248,43 @@ $(document).ready(function() {
 
             //lets the attack button work again
             battle = true;
+            $("#enemy").fadeIn();
+            shallNot();
         }
     });
 
-
+    //button to reset the game
     $("#reset").on("click", function() {
         console.log("reset");
         $("#fighting").empty();
         $("#defender").empty();
         $(".character").fadeIn();
-        $(".enemy").fadeIn();
+        $(".enemy").fadeOut();
         $("#winLoss").empty();
         defenderPicked = false;
         fighterPicked = false;
 
         battle = true;
+
+        minas.pause();
+        gate.pause();
+        
+        music = true;
     });
     
 });
 
+//THIS IS ALL FORMER NOTES OR REJECTED CODEs
 
+// var enemyStats = [80, 90, 70, 100]
+//this will start once the character has been chosen and display the enemy's
+//this doesnt work cause I cant click on one of these
+
+
+
+//when the defenders health drops below 0 
+//defender fades out and allows for a new defender to be selected
+//the stats should auto reset because of the defender on click function
 //var enemySelect = ["./assets/images/Shelob.jpg", "./assets/images/Witch_King.png", "./assets/images/Lurtz.jpg", "./assets/images/balrog.jpg"];
 
 
