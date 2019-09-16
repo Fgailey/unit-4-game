@@ -131,10 +131,7 @@ $(document).ready(function() {
                 if(fighterSelected.charHealth <= 0){
                     fighterDefeat();
                 }
-                if(music){
-                    music = false;
-                    gate.play();
-                }
+                
             }  
         }      
     });
@@ -250,6 +247,11 @@ $(document).ready(function() {
             battle = true;
             $("#enemy").fadeIn();
             shallNot();
+
+            if(music){
+                music = false;
+                gate.play();
+            }
         }
     });
 
