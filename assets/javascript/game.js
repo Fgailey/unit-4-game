@@ -51,26 +51,29 @@ function defenderDefeat(){
     //triggers victory after 4th fight
     if (fights === 4){
         victory();
+        $("#log").empty();
+        var winLog = $("<p>");
+        winLog.text(`${fighterSelected.charName} is Victorious!`);
+        winLog.addClass("text-white")
+        $("#log").append(winLog);
+        
     }
 }
 
 //if all the enemy's are defeated
 function victory(){
-    $("#winLoss").html("<h1>VICTORY</h1>")
-    $("#counterLog").empty();
-    $("#battleLog").html(`${fighterSelected.charName} is Victorious!`);
+    $("#winLoss").html("<h1>VICTORY</h1>");
 }
 
 
 //if the chosen fighter is defeated
 function fighterDefeat(){
-    $(".chosenFighter").parent().fadeTo("slow", 0.15);
+    $(".chosenFighter").parent().fadeTo("slow", 0.1);
     minas.play();
     
     battle = false;  
 
-    $("#counterLog").empty();
-    $("#battleLog").html(`${fighterSelected.charName} has been defeated!`);
+    
 }
 
 
@@ -138,6 +141,8 @@ $(document).ready(function() {
                 
                 if(fighterSelected.charHealth <= 0){
                     fighterDefeat();
+                    $("#counterLog").empty();
+                    $("#battleLog").html(`${fighterSelected.charName} has been defeated!`);
                 }
                 
                 //logs battle
