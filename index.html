@@ -15,12 +15,20 @@
 </head>
 <body>
     <div class="container">
-            <div class="col">
-                    <div class="row justify-content-center">
-                        <h1>Lord of the Rings RPG!</h1>
-                    </div>
-                    <div id="winLoss" class="row justify-content-center mt-5"></div>
-                </div>
+        <div class="col">
+            <div class="row justify-content-center">
+                <h1>Lord of the Rings RPG!</h1>
+            </div>
+            <div id="winLoss" class="row justify-content-center mt-5"></div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="yourChar">
+                <h3 class="text-white"> Pick Your Character</h3>
+            </div>
+                
+        </div>
+
         <div class="row justify-content-center">
             
                     <div id="aragorn" class="character">
@@ -45,49 +53,50 @@
                     </div>
             
         </div>
-        <div class="row justify-content-center">
-            <div class="yourChar">
-                <h3 class="text-white">Your Character</h3>
-            </div>
-            
-        </div>
+        
         <!-- Chosen fighter is placed here -->
-        <div id="fighting" class="row justify-content-center"></div>
+        <div class="row justify-content-center align-middle mt-2">
+            <div id="fighting"></div>
 
+            <button id="attack" class="my-auto mx-2"></button>
+
+            <div id="defender"></div>
+        </div>
         <!-- <div class="row text-white justify-content-center">
             Enemies Available to Attack
         </div> -->
         <div class="enemies row justify-content-center mt-4">
 
-            <div class="enemy">
-                <img src='./assets/images/Saruman.jpg' class='enemyFighter' data-health='80' data-attack='8' data-name='Saruman'></img>
+            <div id="def1" class="enemy">
+                <img src='./assets/images/Saruman.jpg' class='enemyFighter' data-health='80' data-attack='9' data-name='Saruman'></img>
                 <div class="charName">Saruman</div>
-                <div class="charHealth">80</div>
+                <div id="defHealth1" class="charHealth">80</div>
             </div>
-            <div class="enemy">
+            <div id="def2" class="enemy">
                 <img src='./assets/images/Witch_King.png' class='enemyFighter' data-health='130' data-attack='9' data-name='Witch King'></img>
                 <div class="charName">Witch King</div>
-                <div class="charHealth">130</div>
+                <div id="defHealth2" class="charHealth">130</div>
             </div>
-            <div class="enemy">
+            <div id="def3" class="enemy">
                 <img src='./assets/images/Balrog.jpg' class='enemyFighter' data-health='150' data-attack='11' data-name='Balrog'></img>
                 <div class="charName">Balrog</div>
-                <div class="charHealth">150</div>
+                <div id="defHealth3" class="charHealth">150</div>
             </div>
-            <div class="enemy">
+            <div id="def4" class="enemy">
                 <img src='./assets/images/Shelob.jpg' class='enemyFighter' data-health='90' data-attack='7' data-name='Shelob'></img>
                 <div class="charName">Shelob</div>
-                <div class="charHealth">90</div>
+                <div id="defHealth4" class="charHealth">90</div>
             </div>
 
         </div>
         <div class="row justify-content-center my-2">
+            <div id="log" class="col-6-auto">
+                <div id="battleLog" class="row"></div>
+                <div id="counterLog" class="row"></div>
+            </div>
             
-            <button id="attack"></button>
         </div>
-        <div class="row justify-content-center">
-            <div id="defender"></div>
-        </div>
+        
         <div class="row">
             <button id="reset">Reset</button>
         </div>

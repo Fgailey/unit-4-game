@@ -88,6 +88,11 @@ body {
 
   #winLoss {
       margin: auto;
+      color: blue;
+  }
+
+  #battleLog, #counterLog {
+      color: white;
   }
 
 #attack {

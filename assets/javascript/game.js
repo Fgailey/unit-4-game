@@ -57,6 +57,8 @@ function defenderDefeat(){
 //if all the enemy's are defeated
 function victory(){
     $("#winLoss").html("<h1>VICTORY</h1>")
+    $("#counterLog").empty();
+    $("#battleLog").html(`${fighterSelected.charName} is Victorious!`);
 }
 
 
@@ -64,8 +66,11 @@ function victory(){
 function fighterDefeat(){
     $(".chosenFighter").parent().fadeTo("slow", 0.15);
     minas.play();
-
+    
     battle = false;  
+
+    $("#counterLog").empty();
+    $("#battleLog").html(`${fighterSelected.charName} has been defeated!`);
 }
 
 
@@ -102,7 +107,12 @@ $(document).ready(function() {
     $("#heroAttack2").html($("#legolas").children().attr("data-attack"));
     $("#heroAttack3").html($("#gimli").children().attr("data-attack"));
     $("#heroAttack4").html($("#gandalf").children().attr("data-attack"));
-
+    
+    $("#defHealth1").html($("#def1").children().attr("data-health"));
+    $("#defHealth2").html($("#def2").children().attr("data-health"));
+    $("#defHealth3").html($("#def3").children().attr("data-health"));
+    $("#defHealth4").html($("#def4").children().attr("data-health"));
+    
 
 
     $("#attack").on("click", function(){
@@ -120,17 +130,20 @@ $(document).ready(function() {
                 $("#charHealth").html(fighterSelected.charHealth);
                 
                 
-                $("#defHealth").html(defenderSelected.charHealth) 
+                $("#defHealth").html(defenderSelected.charHealth); 
                 
                 if(defenderSelected.charHealth <= 0){
-                    defenderDefeat();
-                    
-                    
+                    defenderDefeat();                    
                 }
                 
                 if(fighterSelected.charHealth <= 0){
                     fighterDefeat();
                 }
+                
+                //logs battle
+                $("#battleLog").html(`${fighterSelected.charName} hits ${defenderSelected.charName} for ${fighterSelected.charCounter} damage`);
+                $("#counterLog").html(`${defenderSelected.charName} counter attacks ${fighterSelected.charName} for ${defenderSelected.charAttack} damage`);
+                
                 
             }  
         }      
@@ -144,14 +157,14 @@ $(document).ready(function() {
             //creates profile for fighter
             var fighterPort = $("<div>");
             fighterPort.addClass("character");
-            fighterPort.attr("id", "character")
+            fighterPort.attr("id", "character");
             $("#fighting").append(fighterPort);
             
             //adds img to chosen fighter
             var fighter = $("<img>");
             fighter.addClass("chosenFighter");
             fighter.attr("src", $(this).attr('src'));
-            fighter.attr("value", $(this).attr('value'))
+            fighter.attr("value", $(this).attr('value'));
             $("#character").append(fighter);
             //$(".character").fadeTo("fast", 0.2);
             $(this).parent().fadeOut();
@@ -181,7 +194,8 @@ $(document).ready(function() {
             //need to make an object for the character chosen
             fighterSelected.charHealth = parseInt($(this).attr("data-health"));
             fighterSelected.charAttack = parseInt($(this).attr("data-attack"));
-            fighterSelected.charName = $(this).attr("data-name")
+            fighterSelected.charName = $(this).attr("data-name");
+
             fighterSelected.charCounter = fighterSelected.charAttack
             
             //display fighters health
@@ -208,7 +222,7 @@ $(document).ready(function() {
             //creates container
             var defenderPort = $("<div>");
             defenderPort.addClass("enemy");
-            defenderPort.attr("id", "enemy")
+            defenderPort.attr("id", "enemy");
             $("#defender").append(defenderPort);
 
             //creates and attaches image
@@ -227,7 +241,7 @@ $(document).ready(function() {
             $("#enemy").append(defenderHealth);
 
             var defenderAttack = $("<div>");
-            defenderAttack.addClass("charAttack");
+            defenderAttack.addClass("charAttack text-center");
             defenderAttack.text($(this).attr("data-attack"));
             defenderAttack.attr("id", "defAttack");
             $("#enemy").append(defenderAttack);
@@ -266,6 +280,7 @@ $(document).ready(function() {
         $(".character").fadeIn();
         $(".enemy").fadeOut();
         $("#winLoss").empty();
+        $("#log").empty();
         defenderPicked = false;
         fighterPicked = false;
 
